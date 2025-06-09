@@ -5,9 +5,9 @@ then
 	exit 1
 fi
 
-if ! command -v xdelta 2>&1 >/dev/null
+if ! command -v xdelta3 2>&1 >/dev/null
 then
-	echo "xdelta not found. Please install xdelta using your package manager"
+	echo "xdelta3 not found. Please install xdelta using your package manager"
 	exit 1
 fi
 
@@ -87,7 +87,7 @@ function port_game() {
 
    echo -e "\e[1;32m SUCCESS! The port script finished. \e[0m"
    echo -e '\e[1;34m::\e[0m \e[1mTo play DELTARUNE, go to Steam -> DELTARUNE -> Properties -> Launch Options -> Put this: "./DELTARUNE.sh" %command% \e[0m'
-   echo -e "\e[1;34m::\e[0m \e[1mOr, you can run ./DELTARUNE.sh in the game folder.\e[0m"
+   echo -e "\e[1;34m::\e[0m \e[1mOr, you can run ./DELTARUNE.sh in the game folder. (If you have issues with Steam, run the game this way)\e[0m"
    echo -e "\e[1;34m::\e[0m \e[1mEnjoy and have fun! \e[0m"
 }
 
@@ -110,7 +110,7 @@ function select_dir() {
 }
 
 echo -e "\e[1;34mWelcome to the unofficial DELTARUNE Chapter 3 & 4 Linux port!\e[0m"
-echo -e "\e[1;34mThis is for version 1.01A\e[0m"
+echo -e "\e[1;34mThis port is for version 1.01C\e[0m"
 echo -e "\e[1;34mSince Chapter 3&4 are paid, you are gonna need to own a copy. This dosen't include any game data\e[0m"
 echo ""
 
