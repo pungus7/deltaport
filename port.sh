@@ -51,7 +51,6 @@ function port_game() {
         cp "$SCRIPTDIR/deltarune" "$chapter_dir/"
         cp "$SCRIPTDIR/icon.png" "$chapter_dir/"
         cp "$SCRIPTDIR/splash.png" "$chapter_dir/"
-        cp -r "$SCRIPTDIR/files/lib" "$chapter_dir/"
         ln -sf "../../mus" "$chapter_dir/assets/mus"
    done
 
@@ -59,7 +58,6 @@ function port_game() {
    cp "$SCRIPTDIR/files/options_2.ini" "$DELTARUNEDIR/chapter2_linux/options.ini"
    cp "$SCRIPTDIR/files/options_3.ini" "$DELTARUNEDIR/chapter3_linux/options.ini"
    cp "$SCRIPTDIR/files/options_4.ini" "$DELTARUNEDIR/chapter4_linux/options.ini"
-   cp "$SCRIPTDIR/files/subtitles.srt" "$DELTARUNEDIR/chapter3_linux/assets/vid/"
    rm -fr "$DELTARUNEDIR/chapter3_linux/vid"
 
    echo -e "\e[1;34m::\e[0m \e[1mApplying patches\e[0m"
@@ -68,20 +66,30 @@ function port_game() {
    xdelta -d -s "$DELTARUNEDIR/chapter1_linux/assets/game.unx" "$SCRIPTDIR/files/patches/02-chapter_01.delta" "$DELTARUNEDIR/chapter1_linux/assets/game.unx.1"
    xdelta -d -s "$DELTARUNEDIR/chapter2_linux/assets/game.unx" "$SCRIPTDIR/files/patches/03-chapter_02.delta" "$DELTARUNEDIR/chapter2_linux/assets/game.unx.1"
    xdelta -d -s "$DELTARUNEDIR/chapter3_linux/assets/game.unx" "$SCRIPTDIR/files/patches/04-chapter_03.delta" "$DELTARUNEDIR/chapter3_linux/assets/game.unx.1"
-   xdelta -d -s "$DELTARUNEDIR/chapter3_linux/assets/game.unx.1" "$SCRIPTDIR/files/patches/05-chapter_03_video_fix.delta" "$DELTARUNEDIR/chapter3_linux/assets/game.unx.2"
-   xdelta -d -s "$DELTARUNEDIR/chapter4_linux/assets/game.unx" "$SCRIPTDIR/files/patches/06-chapter_04.delta" "$DELTARUNEDIR/chapter4_linux/assets/game.unx.1"
+   xdelta -d -s "$DELTARUNEDIR/chapter4_linux/assets/game.unx" "$SCRIPTDIR/files/patches/05-chapter_04.delta" "$DELTARUNEDIR/chapter4_linux/assets/game.unx.1"
 
    rm -fr "$DELTARUNEDIR/game.unx"
    rm -fr "$DELTARUNEDIR/chapter1_linux/assets/game.unx"
    rm -fr "$DELTARUNEDIR/chapter2_linux/assets/game.unx"
    rm -fr "$DELTARUNEDIR/chapter3_linux/assets/game.unx"
-   rm -fr "$DELTARUNEDIR/chapter3_linux/assets/game.unx.1"
+   rm -fr "$DELTARUNEDIR/chapter3_linux/assets/game.unx"
    rm -fr "$DELTARUNEDIR/chapter4_linux/assets/game.unx"
    mv "$DELTARUNEDIR/game.unx.1" "$DELTARUNEDIR/game.unx"
    mv "$DELTARUNEDIR/chapter1_linux/assets/game.unx.1" "$DELTARUNEDIR/chapter1_linux/assets/game.unx"
    mv "$DELTARUNEDIR/chapter2_linux/assets/game.unx.1" "$DELTARUNEDIR/chapter2_linux/assets/game.unx"
-   mv "$DELTARUNEDIR/chapter3_linux/assets/game.unx.2" "$DELTARUNEDIR/chapter3_linux/assets/game.unx"
+   mv "$DELTARUNEDIR/chapter3_linux/assets/game.unx.1" "$DELTARUNEDIR/chapter3_linux/assets/game.unx"
    mv "$DELTARUNEDIR/chapter4_linux/assets/game.unx.1" "$DELTARUNEDIR/chapter4_linux/assets/game.unx"
+
+   echo -e "\e[1;34m::\e[0m \e[1mDownloading ffmpeg4 for video playback\e[0m"
+   
+   ln -s "$DELTARUNEDIR/chapter3_linux/assets/vid/tennaintrof1_compressed_28.mp4" "$DELTARUNEDIR/chapter3_linux/assets/vid/tennaIntroF1_compressed_28.mp4"
+   ln -s "$DELTARUNEDIR/chapter3_linux/assets/vid/tennaintrojpf1_compressed_28.mp4" "$DELTARUNEDIR/chapter3_linux/assets/vid/tennaIntroJPf1_compressed_28.mp4"
+   
+   # Thanks u/flibitijibibo for the fix!
+   cd "$DELTARUNEDIR/lib"
+   wget "https://files.catbox.moe/explj6.bz2" -O ffmpeg4.tar.bz2
+   tar -xvjf ffmpeg4.tar.bz2
+   rm -rf ffmpeg4.tar.bz2
 
    ln -sf "$DELTARUNEDIR/DELTARUNE.sh" "$DELTARUNEDIR/DELTARUNE.exe"
 

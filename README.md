@@ -15,7 +15,7 @@ It's not recommended to use Flatpak Steam, you will probably have issues
 
 ## ⚙️ Dependencies
 
-`mpv`
+~~`mpv`~~ (not needed anymore)
 
 `rsync`
 
@@ -33,4 +33,4 @@ And others not listed, if the game dosen't launch through Steam, run the `DELTAR
 
 * When loading saves for any of the chapters, you may notice that the music/audio is gone, to fix this, go to your save at `~/.config/DELTARUNE/`, edit line **569/570** and change both values from `.` to `,`, or vice-versa
 
-* At the start of Chapter 3, there is a section where a video is supposed to play, since `video_play()` is broken on Linux, a workaround has been implemented.
+* ~~At the start of Chapter 3, there is a section where a video is supposed to play, since `video_play()` is broken on Linux, a workaround has been implemented.~~ (Issue has been fixed)

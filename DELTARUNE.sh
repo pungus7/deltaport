@@ -5,12 +5,6 @@ then
 	exit 1
 fi
 
-if ! command -v mpv 2>&1 >/dev/null
-then
-	echo "mpv not found. Please install mpv using your package manager"
-	exit 1
-fi
-
 DELTARUNEDIR=$(pwd)
 SAVEDIR="$HOME/.config/DELTARUNE"
 
@@ -19,9 +13,6 @@ CHAPTER1_FILE="$SAVEDIR/deltarune_chapter1"
 CHAPTER2_FILE="$SAVEDIR/deltarune_chapter2"
 CHAPTER3_FILE="$SAVEDIR/deltarune_chapter3"
 CHAPTER4_FILE="$SAVEDIR/deltarune_chapter4"
-
-VIDEO_ENG_FILE="$SAVEDIR/play_video_en"
-VIDEO_JAP_FILE="$SAVEDIR/play_video_jp"
 
 # Just in case
 mkdir -p $SAVEDIR
@@ -55,17 +46,7 @@ function run_game {
 # Run the game! 
 run_game
 
-# All the logic for changing chapters (and playing video) -=
-
-# Remove trigger files (just in case)
-if [ -f "$VIDEO_ENG_FILE" ]; then
-	rm -fr $VIDEO_ENG_FILE
-fi
-
-if [ -f "$VIDEO_JAP_FILE" ]; then
-	rm -fr $VIDEO_JAP_FILE
-fi
-
+# All the logic for changing chapters -=
 parse_file() {
 	if [ "$1" == "deltarune_chapterselect" ]; then
 		rm -fr $2/$1
@@ -82,12 +63,6 @@ parse_file() {
 	elif [ "$1" == "deltarune_chapter4" ]; then
 		rm -fr $2/$1
 		change_chapter 4
-    elif [ "$1" == "play_video_en" ]; then
-        rm -fr "$VIDEO_ENG_FILE"
-        mpv --sub-file="$DELTARUNEDIR/chapter3_linux/assets/vid/subtitles.srt" --ontop=yes --fullscreen "$DELTARUNEDIR/chapter3_linux/assets/vid/tennaintrof1_compressed_28.mp4"
-    elif [ "$1" == "play_video_jp" ]; then
-        rm -fr "$VIDEO_JAP_FILE"
-        mpv --sub-file="$DELTARUNEDIR/chapter3_linux/assets/vid/subtitles.srt" --ontop=yes --fullscreen "$DELTARUNEDIR/chapter3_linux/assets/vid/tennaintrojpf1_compressed_28.mp4"
 	else
 		return
 	fi
