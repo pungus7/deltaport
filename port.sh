@@ -62,11 +62,11 @@ function port_game() {
 
    echo -e "\e[1;34m::\e[0m \e[1mApplying patches\e[0m"
    echo ""
-   xdelta -d -s "$DELTARUNEDIR/game.unx" "$SCRIPTDIR/files/patches/01-menu.delta" "$DELTARUNEDIR/game.unx.1"
-   xdelta -d -s "$DELTARUNEDIR/chapter1_linux/assets/game.unx" "$SCRIPTDIR/files/patches/02-chapter_01.delta" "$DELTARUNEDIR/chapter1_linux/assets/game.unx.1"
-   xdelta -d -s "$DELTARUNEDIR/chapter2_linux/assets/game.unx" "$SCRIPTDIR/files/patches/03-chapter_02.delta" "$DELTARUNEDIR/chapter2_linux/assets/game.unx.1"
-   xdelta -d -s "$DELTARUNEDIR/chapter3_linux/assets/game.unx" "$SCRIPTDIR/files/patches/04-chapter_03.delta" "$DELTARUNEDIR/chapter3_linux/assets/game.unx.1"
-   xdelta -d -s "$DELTARUNEDIR/chapter4_linux/assets/game.unx" "$SCRIPTDIR/files/patches/05-chapter_04.delta" "$DELTARUNEDIR/chapter4_linux/assets/game.unx.1"
+   xdelta3 -d -s "$DELTARUNEDIR/game.unx" "$SCRIPTDIR/files/patches/01-menu.delta" "$DELTARUNEDIR/game.unx.1"
+   xdelta3 -d -s "$DELTARUNEDIR/chapter1_linux/assets/game.unx" "$SCRIPTDIR/files/patches/02-chapter_01.delta" "$DELTARUNEDIR/chapter1_linux/assets/game.unx.1"
+   xdelta3 -d -s "$DELTARUNEDIR/chapter2_linux/assets/game.unx" "$SCRIPTDIR/files/patches/03-chapter_02.delta" "$DELTARUNEDIR/chapter2_linux/assets/game.unx.1"
+   xdelta3 -d -s "$DELTARUNEDIR/chapter3_linux/assets/game.unx" "$SCRIPTDIR/files/patches/04-chapter_03.delta" "$DELTARUNEDIR/chapter3_linux/assets/game.unx.1"
+   xdelta3 -d -s "$DELTARUNEDIR/chapter4_linux/assets/game.unx" "$SCRIPTDIR/files/patches/05-chapter_04.delta" "$DELTARUNEDIR/chapter4_linux/assets/game.unx.1"
 
    rm -fr "$DELTARUNEDIR/game.unx"
    rm -fr "$DELTARUNEDIR/chapter1_linux/assets/game.unx"
